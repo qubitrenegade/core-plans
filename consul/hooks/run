@@ -2,11 +2,13 @@
 
 exec 2>&1
 
-SERVERMODE={{cfg.server.mode}}
 export CONSUL_UI_BETA={{cfg.server.beta_ui}}
 
-if [ "$SERVERMODE" = true ] ; then
-  exec consul agent {{~#if cfg.website}} -ui {{~/if}} -server -bootstrap-expect {{cfg.bootstrap.expect}} -config-file={{pkg.svc_config_path}}/basic_config.json
-else
-  exec consul agent -dev
-fi
+exec consul agent \
+  {{~#if cfg.server.ui}} -ui \{{/if}} 
+  {{~#if cfg.server.dev}} -dev \{{/if}
+  {{~#if cfg.server.mode}} -server -bootstrap-expect {{cfg.bootstrap.expect}} \{{/if}}
+  {{#eachAlive bind.consul.members as |member|}}
+    -retry-join {{member.sys.ip}} \
+  {{~/eachAlive}}
+  -config-file={{pkg.svc_config_path}}/basic_config.json

@@ -16,6 +16,7 @@ loglevel = "INFO"
 beta_ui = false
 # switch this to false you want to start in DEVMODE
 # https://www.consul.io/docs/guides/bootstrapping.html
+dev = false
 mode = true
 
 [ports]
