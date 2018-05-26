@@ -1,3 +1,5 @@
+ui = {{cfg.ui}}
+
 backend "{{cfg.backend.storage}}" {
   address = "{{cfg.backend.location}}:{{cfg.backend.port}}"
   path = "{{cfg.backend.path}}"
