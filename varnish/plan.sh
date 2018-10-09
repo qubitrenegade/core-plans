@@ -11,7 +11,7 @@ pkg_source="https://varnish-cache.org/_downloads/${pkg_name}-${pkg_version}.tgz"
 pkg_shasum="39d858137e26948a7c85f07363f13f0778da61d234126e03a160a0cb9ba4fce3"
 pkg_deps=(
   core/bash
-  core/gcc
+  core/gcc-libs
   core/glibc
   core/ncurses
   core/pcre
@@ -20,6 +20,7 @@ pkg_build_deps=(
   core/autoconf
   core/automake
   core/docutils
+  core/gcc
   core/graphviz
   core/libedit
   core/libtool
